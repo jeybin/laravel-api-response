@@ -1,0 +1,27 @@
+{
+    "name": "jeybin/apiresponse",
+    "description": "Laravel api response helper",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jeybin\\Apiresponse\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jeybin",
+            "email": "jeybin@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jeybin\\Apiresponse\\Providers\\ApiresponseServiceProvider"
+            ],
+            "aliases": {
+                "Response": "Jeybin\\Apiresponse\\Facades\\ApiresponseFacades"
+            }
+        }
+    }
+}
