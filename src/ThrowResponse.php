@@ -29,8 +29,19 @@ final class ThrowResponse{
         return $this;
     }
 
-    public function send($data=[]){
 
+    public function throw($data=[]){
+        $response = $this->generateResponse($data);
+        throw new HttpResponseException($response);
+    }
+
+    public function get($data=[]){
+        $response = $this->generateResponse($data);
+        return $response;
+    }
+
+
+    private function generateResponse($data=[]){
         /**
          *  Checking if the the response codes are success
          */
@@ -61,10 +72,8 @@ final class ThrowResponse{
             $response = $response->header($hKey,$header);
         }
 
-        /**
-         * Throwing the response
-         */
-        throw new HttpResponseException($response);
+
+        return $response;
     }
 
 
@@ -79,17 +88,27 @@ final class ThrowResponse{
          */
         $errorCode = StatusCodeService::code('SERVER_ERROR');
 
-        if($exception->getMessage()){
-            $data      = (!empty($exception->getTrace()))   ? $exception->getTrace()   : [];
-            $message   = (!empty($exception->getMessage())) ? $exception->getMessage() : "Something went wrong";
-            $data      = $data?:[$data];
-            $return = ['code'=>(int)$errorCode,'error'=>true,'message'=>"Exception : ".$message,'data'=>$data];
-        }else{
-            $return = $exception->getResponse();
-        }
+        if(request()->wantsJson()) {
 
-        $return =  response()->json($return,$errorCode)->header('Content-Type', 'application/json');
-        throw new HttpResponseException($return);
+            if($exception->getMessage()){
+                $data      = (!empty($exception->getTrace()))   ? $exception->getTrace()   : [];
+                $message   = (!empty($exception->getMessage())) ? $exception->getMessage() : "Something went wrong";
+                $data      = $data?:[$data];
+                $return = ['code'=>(int)$errorCode,'error'=>true,'message'=>"Exception : ".$message,'data'=>$data];
+            }else{
+                $return = $exception->getResponse();
+            }
+
+            $return =  response()->json($return,$errorCode)->header('Content-Type', 'application/json');
+            throw new HttpResponseException($return);
+
+        } else{
+            if(is_object($exception)){
+                throw $exception;
+            }else{
+                return $exception;
+            }
+        }
     }
 
 
