@@ -6,7 +6,7 @@
 You can install the package via composer:
 
 ```bash
-  composer jeybin/apiresponse
+  composer require jeybin/apiresponse
 ```
 
 To publish providers and to copy the config files run :  
@@ -17,7 +17,7 @@ To publish providers and to copy the config files run :
 
 Usage
 ```bash
-  \Jeybin\Apiresponse\Response::status(200)
+  \Jeybin\Apiresponse\ThrowResponse::status(200)
                               ->message('User defined message')
                               ->send(['can send array or string or empty'])
 ```
@@ -25,13 +25,13 @@ Usage
 Without message
 
 ```bash
-  \Jeybin\Apiresponse\Response::status(200)
+  \Jeybin\Apiresponse\ThrowResponse::status(200)
                               ->send(['can send array or string or empty'])
 ```
 
 
 ```bash
-  \Jeybin\Apiresponse\Response::status('success')->send()
+  \Jeybin\Apiresponse\ThrowResponse::status('success')->send()
 ```
 
 Some of the status codes are already defined in the config/jeybin-apiresponse.php file, if you want to add more update that file
