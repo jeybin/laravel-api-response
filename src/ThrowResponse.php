@@ -5,7 +5,7 @@ use Exception;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Jeybin\Apiresponse\Services\StatusCodeService;
 
-final class Response{
+final class ThrowResponse{
     
     private $statusCode = '';
     private $message    = '';
@@ -71,7 +71,7 @@ final class Response{
     /**
      * For adding in the catch 
      *
-     * eg : catch(\Exception $ex){ Response::exception($ex); }
+     * eg : catch(\Exception $ex){ ThrowResponse::exception($ex); }
      */
     public static function exception($exception){
         /**

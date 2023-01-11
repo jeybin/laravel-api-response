@@ -57,9 +57,9 @@ class ApiresponseServiceProvider extends ServiceProvider
         );
 
         
-        $this->app->bind('response',fn($app)=>new ApiresponseFacades($app));
+        $this->app->bind('throwresponse',fn($app)=>new ApiresponseFacades($app));
 
-        $this->app->alias('response', ApiresponseFacades::class);
+        $this->app->alias('throwresponse', ApiresponseFacades::class);
 
     }
 }

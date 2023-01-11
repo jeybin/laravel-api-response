@@ -8,6 +8,6 @@ class ApiresponseFacades extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'response';
+        return 'throwresponse';
     }
 }

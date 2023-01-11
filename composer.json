@@ -20,7 +20,7 @@
                 "Jeybin\\Apiresponse\\Providers\\ApiresponseServiceProvider"
             ],
             "aliases": {
-                "Response": "Jeybin\\Apiresponse\\Facades\\ApiresponseFacades"
+                "ThrowResponse": "Jeybin\\Apiresponse\\Facades\\ApiresponseFacades"
             }
         }
     }
